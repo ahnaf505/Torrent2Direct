@@ -1,2 +1,5 @@
 rules
-compile.sh
+compile.py
+.venv
+dist/*
+dist

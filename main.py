@@ -1,4 +1,5 @@
-from torrent import get_metadata, print_full_metadata, print_primary_metadata
+from torrent import get_metadata
+from output import print_full_metadata, print_primary_metadata
 from validation import is_valid_magnet
 import sys
 
@@ -9,13 +10,21 @@ if not is_valid_magnet(magnetLink):
     sys.exit()
 
 print("🔹 Getting metadata...")
+promptFullMetadata = input("do you want the full metadata? (y/N): ")
 torrentMetadata = get_metadata(magnetLink)
 isExists = torrentMetadata is not None
-if isExists != None:
-    print_primary_metadata(torrentMetadata)
+if promptFullMetadata.lower() == "y":
+    if isExists != None:
+        print_full_metadata(torrentMetadata)
+    else:
+        print("🔹 Cannot get metadata...")
+        print("🔹 Exiting...")
+        sys.exit()
 else:
-    print("🔹 Cannot get metadata...")
-    print("🔹 Exiting...")
-    sys.exit()
-
+    if isExists != None:
+        print_primary_metadata(torrentMetadata)
+    else:
+        print("🔹 Cannot get metadata...")
+        print("🔹 Exiting...")
+        sys.exit()
 

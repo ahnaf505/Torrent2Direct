@@ -28,7 +28,4 @@ def print_primary_metadata(torrent_info):
     print("🔹 Torrent Name:", torrent_info.name())
     print("🔹 Total Size:", torrent_info.total_size(), "bytes")
     print("🔹 Info Hash:", torrent_info.info_hash())
-    print("\n🔹 **Files in Torrent**")
-    files = torrent_info.files()
-    for index, file in enumerate(files):
-        print(f"🔹 {index+1}. {file.path} ({file.size} bytes)")
+
