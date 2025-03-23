@@ -20,7 +20,7 @@ def get_metadata(magnet_link, timeout=30):
 
 def download_torrent(torrent_info, save_path='./temp/'):
     ses = lt.session()
-    ses.set_upload_rate_limit(0)  # Disable uploading
+    ses.set_upload_rate_limit(0)
     params = {
         'save_path': save_path,
         'storage_mode': lt.storage_mode_t(2),
@@ -30,5 +30,5 @@ def download_torrent(torrent_info, save_path='./temp/'):
 
     while not handle.is_seed():
         s = handle.status()
-        print(f"Progress: {s.progress * 100:.2f}%")  # Print only progress
+        print(f"Progress: {s.progress * 100:.2f}%")
         time.sleep(1)
