@@ -3,3 +3,5 @@ compile.py
 .venv
 dist/*
 dist
+temp/
+__pycache__

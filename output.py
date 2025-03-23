@@ -4,7 +4,7 @@ def print_full_metadata(torrent_info):
     print("🔹 Torrent Name:", torrent_info.name())
     print("🔹 Total Size:", torrent_info.total_size(), "bytes")
     print("🔹 Number of Files:", torrent_info.num_files())
-    print("🔹 Info Hash:", torrent_info.info_hash())
+    print("🔹 Hash:", torrent_info.info_hash())
     
     print("\n🔹 **Files in Torrent**")
     files = torrent_info.files()
@@ -27,5 +27,5 @@ def print_primary_metadata(torrent_info):
     print("\n🔹 **Torrent General Info**")
     print("🔹 Torrent Name:", torrent_info.name())
     print("🔹 Total Size:", torrent_info.total_size(), "bytes")
-    print("🔹 Info Hash:", torrent_info.info_hash())
+    print("🔹 Hash:", torrent_info.info_hash())
 
