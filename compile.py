@@ -79,5 +79,6 @@ def compile_to_binary():
 
 if __name__ == "__main__":
     ensure_dependencies()
+    patch_gofile()
     compile_to_binary()
     print("Compilation completed. The output is in the 'dist' directory.")
