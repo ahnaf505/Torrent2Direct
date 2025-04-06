@@ -2,11 +2,7 @@ name: Compile Using Nuitka
 
 on:
   workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Build binary'
-        required: false
-        default: 'production'
+  
   push:
     branches:
       - main
