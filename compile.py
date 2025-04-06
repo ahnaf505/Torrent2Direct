@@ -37,6 +37,27 @@ def ensure_dependencies():
         subprocess.run(["sudo", "apt", "update", "-qq"])
         subprocess.run(["sudo", "apt", "install", "-y", "-qq", "ccache"])
 
+def patch_gofile():
+    path="/usr/local/python/3.12.1/lib/python3.12/site-packages/gofilepy/gofile.py"
+    if not os.path.isfile(path):
+        print(f"File not found: {path}")
+        raise FileNotFoundError(f"File not found: {path}")
+    try:
+        with open(path, "r") as file:
+            lines = file.readlines()
+        with open(path, "w") as file:
+            for line in lines:
+                if "raise NotImplemented" in line:
+                    line = line.replace(
+                        "raise NotImplemented",
+                        'raise NotImplementedError("This feature is not implemented yet.")'
+                    )
+                file.write(line)
+        print(f"Patch applied successfully to {path}")
+    except Exception as e:
+        print(f"Error patching file: {e}")
+        raise e
+
 def compile_to_binary():
     if os.path.exists(output_dir):
         shutil.rmtree(output_dir)
