@@ -1,5 +1,7 @@
 import os
 import sys
+import site
+import glob
 import shutil
 import subprocess
 import nuitka.__main__ as nuitka_main
@@ -38,25 +40,27 @@ def ensure_dependencies():
         subprocess.run(["sudo", "apt", "install", "-y", "-qq", "ccache"])
 
 def patch_gofile():
-    path="/usr/local/python/3.12.1/lib/python3.12/site-packages/gofilepy/gofile.py"
-    if not os.path.isfile(path):
-        print(f"File not found: {path}")
-        raise FileNotFoundError(f"File not found: {path}")
-    try:
-        with open(path, "r") as file:
-            lines = file.readlines()
-        with open(path, "w") as file:
-            for line in lines:
-                if "raise NotImplemented" in line:
-                    line = line.replace(
-                        "raise NotImplemented",
-                        'raise NotImplementedError("This feature is not implemented yet.")'
-                    )
-                file.write(line)
-        print(f"Patch applied successfully to {path}")
-    except Exception as e:
-        print(f"Error patching file: {e}")
-        raise e
+    site_packages_dirs = site.getsitepackages()
+    gofile_path = None
+    for dir in site_packages_dirs:
+        match = glob.glob(os.path.join(dir, "gofilepy", "gofile.py"))
+        if match:
+            gofile_path = match[0]
+            break
+    if not gofile_path or not os.path.isfile(gofile_path):
+        raise FileNotFoundError("Could not locate gofilepy/gofile.py in site-packages")
+    print(f"Found gofile.py at: {gofile_path}")
+    with open(gofile_path, "r") as file:
+        lines = file.readlines()
+    with open(gofile_path, "w") as file:
+        for line in lines:
+            if "raise NotImplemented" in line:
+                line = line.replace(
+                    "raise NotImplemented",
+                    'raise NotImplementedError("This feature is not implemented yet.")'
+                )
+            file.write(line)
+    print("Patch applied successfully.")
 
 def compile_to_binary():
     if os.path.exists(output_dir):
