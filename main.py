@@ -7,14 +7,15 @@ import os
 
 unattended = input("🔹 Do you want to enable unattended mode? (y/N): ").lower() == "y"
 promptFullMetadata = "y" if unattended else input("🔹 Do you want the full metadata? (y/N): ")
-
 magnetLink = input("🔹 Enter the magnet link: ")
+
+
 if not is_valid_magnet(magnetLink):
     print("🔹 Invalid magnet link...")
     print("🔹 Exiting...")
     sys.exit()
-
 print("🔹 Getting metadata...")
+
 torrentMetadata = get_metadata(magnetLink)
 isExists = torrentMetadata is not None
 if promptFullMetadata.lower() == "y" and not unattended:
@@ -31,20 +32,22 @@ else:
         print("🔹 Cannot get metadata...")
         print("🔹 Exiting...")
         sys.exit()
-
 if unattended:
     print("🔹 Downloading torrent...")
     if isExists:
-        pass
+        download_torrent(torrent_info=torrentMetadata)
+        print("🔹 Torrent downloaded successfully...")
     else:
         print("🔹 Cannot download torrent, metadata not found...")
 else:
     input("🔹 Press Enter to download the torrent...")
     if isExists:
-        pass
+        download_torrent(torrent_info=torrentMetadata)
+        print("🔹 Torrent downloaded successfully...")
     else:
         print("🔹 Cannot download torrent, metadata not found...")
-
+if not os.path.exists("temp"):
+    os.makedirs("temp")
 temp_folder = "temp"
 if os.path.exists(temp_folder) and os.path.isdir(temp_folder):
     print("🔹 Uploading files from the 'temp' folder...")
@@ -58,4 +61,3 @@ if os.path.exists(temp_folder) and os.path.isdir(temp_folder):
         print("🔹 No files were uploaded.")
 else:
     print("🔹 'temp' folder does not exist or is not a directory.")
-

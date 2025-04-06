@@ -1,5 +1,6 @@
 rules
-compile.py
+bin
+archive
 .venv
 dist/*
 dist
