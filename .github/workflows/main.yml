@@ -1,0 +1,39 @@
+name: Compile Using Nuitka
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Build binary'
+        required: false
+        default: 'production'
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.1'
+
+      - name: Run prep.sh
+        run: chmod +x prep.sh && ./prep.sh
+
+      - name: Run build script
+        run: python compile.py
+
+      - name: Run cleaup script
+        run: chmod +x clean.sh && ./clean.sh
