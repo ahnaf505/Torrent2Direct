@@ -38,10 +38,11 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
           git add .
           git commit -m "Automated build commit from GitHub Actions" || echo "No changes to commit"
-          git push
+          git push origin HEAD:${{ github.ref_name }}
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
