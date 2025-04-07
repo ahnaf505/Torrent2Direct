@@ -34,14 +34,9 @@ jobs:
       - name: Run cleaup script
         run: chmod +x clean.sh && ./clean.sh
 
-      - name: Commit and Push Changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
-          git add .
-          git commit -m "Automated build commit from GitHub Actions" || echo "No changes to commit"
-          git push origin HEAD:${{ github.ref_name }}
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Automated build by Github Actons
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
