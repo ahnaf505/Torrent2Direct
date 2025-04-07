@@ -30,7 +30,7 @@ jobs:
         run: |
           docker run --rm -v ${{ github.workspace }}:/app -w /app python:3.10-bullseye bash -c "
             apt update &&
-            apt install -y curl gcc g++ git &&
+            apt install -y curl gcc g++ git sudo &&
             pip install nuitka &&
             chmod +x prep.sh clean.sh &&
             ./prep.sh &&
