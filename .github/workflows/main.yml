@@ -37,6 +37,12 @@ jobs:
       - name: Run cleaup script
         run: chmod +x clean.sh && ./clean.sh
 
+      - name: Install tree
+        run: sudo apt-get update && sudo apt-get install -y tree
+
+      - name: List all files in the directory
+          run: echo "Listing all files in the directory structure:" && tree
+
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Automated build by Github Actons
