@@ -1,8 +1,1 @@
-rules
-bin
-archive
-.venv
-dist/*
-dist
-temp/
-__pycache__
+
