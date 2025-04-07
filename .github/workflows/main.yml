@@ -44,7 +44,7 @@ jobs:
 
       - name: Commit generated file
         run: |
-          git add g.
+          git add .
           git commit -m "Automated build by Github Actions" || echo "No changes to commit"
           git push origin HEAD:${{ github.ref }}
         env:
