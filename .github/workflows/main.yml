@@ -50,12 +50,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: Upload Binary to Release
-        uses: actions/upload-release-asset@v1
+      - name: Upload binaries to GitHub Release
+        uses: softprops/action-gh-release@v1
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./my-binary.bin
-          asset_name: my-binary.bin
-          asset_content_type: application/octet-stream
+          files: ./bin/*.bin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
