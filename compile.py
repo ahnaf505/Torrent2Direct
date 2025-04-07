@@ -69,7 +69,6 @@ def compile_to_binary():
         "nuitka",
         "--standalone",
         "--onefile",
-        "--enable-plugin=tk-inter",
         "--follow-imports",
         "--assume-yes-for-downloads",
         f"--output-dir={output_dir}",
