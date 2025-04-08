@@ -1,6 +1,6 @@
 # 📦 Torrent2Direct  
 
-[![GitHub release](https://img.shields.io/github/v/release/ahnaf505/Torrent2Direct?style=flat-square)](https://github.com/ahnaf505/Torrent2Direct/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/ahnaf505/Torrent2Direct?style=flat-square)](https://github.com/ahnaf505/Torrent2Direct/releases)
 
 
 ## ℹ️ Overview  
@@ -22,10 +22,7 @@ chmod +x Torrent2Direct02c5e711ffe67a12561ba3764d685f1c850260efeacc491c4c82889ec
 ./Torrent2Direct02c5e711ffe67a12561ba3764d685f1c850260efeacc491c4c82889ec8e30a7b_20250407150742_18280.bin
 ```
 
-## 💭 Feedback & Contributing  
+## 💭 Want to contribute? PRs are welcome!
+Report a bug? [File an Issue](https://github.com/ahnaf505/Torrent2Direct/issues)
 
-- **Found a bug?** [File an Issue](https://github.com/ahnaf505/Torrent2Direct/issues)
-- **Want to help?** PRs are welcome!
-
-**Enjoy hassle-free torrent downloads!** 🔗  
-
+**Download torrents the easy way — remotely, safely, and without limits!** 🔗
